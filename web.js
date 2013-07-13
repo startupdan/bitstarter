@@ -2,10 +2,10 @@ var express = require('express');
 
 var app = express.createServer(express.logger());
 
-console.log(fs.readFileSync('/myrepo/bitstarter/index.html', encoding));
-
 app.get('/', function(request, response) {
-  response.send('Hello World 3!');
+  var fs = require('fs');
+  var buf = new Buffer(fs.readFileSync('index.html'),'utf8');
+  response.send(buf.toString());
 });
 
 var port = process.env.PORT || 5000;
